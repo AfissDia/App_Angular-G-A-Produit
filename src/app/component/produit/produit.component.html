@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="border">
+    <button class="btn btn-md btn-outline-primary" (click)="open(content)">
+      <i class="fa fa-user"></i>New Produit</button>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom Produit</th>
+      <th>Prix</th>
+      <th>TypeProduit</th>
+      <th>Actions</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let produit of produitList ">
+      <td><span>{{produit.id}}</span></td>
+      <td><span>{{produit.nom}}</span></td>
+      <td><span>{{produit.prix }}</span></td>
+      <td><span>{{produit.typeProduit.nom}}</span></td>
+
+      <td>
+        <button class="btn btn-sm btn-info" >
+          <i class="fa fa-search"> </i></button>
+        <button class="btn btn-sm btn-warning" >
+          <i class="fa fa-edit"></i></button>
+        <button class="btn btn-sm btn-danger">
+          <i class="fa fa-remove"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New Produit</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <form [formGroup]="produitDetails" >
+        <div class="form-group">
+          <label for="nom">nom Produit</label>
+          <div class="input-group">
+            <input type="text" id="nom" formControlName="nom" class="form-control" aria-describedby="emailHelp">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="prix">Prix Produit</label>
+          <div class="input-group">
+            <input type="text" id="prix" class="form-control" formControlName="prix"  aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="typeProduit">Type Produit</label>
+            <select [(ngModel)]="produitObj.typeProduit" class="form-control" name="typeProduit" id="typeProduit">
+              <option [ngValue]="undefined">--- Select ---</option>
+              <option *ngFor="let typeProduit of typeProduit" [ngValue]="typeProduit.id">
+                {{typeProduit.nom}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    </div>
+  </ng-template>
+
+</div>

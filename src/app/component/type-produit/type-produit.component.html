@@ -1,0 +1,122 @@
+<div class="container">
+  <marquee><h3> <span><i class="fa fa-code"></i></span>Liste type de produits </h3></marquee>
+  <div class="border">
+    <button class="btn btn-md btn-outline-success" (click)="open(content)">
+      <i class="fa fa-user"></i>New TypeProduit</button>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom TypeProduit</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let typeProduit of typeProduits">
+      <td><span>{{typeProduit.id}}</span></td>
+      <td><span>{{typeProduit.nom}}</span></td>
+
+       <td>
+        <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, typeProduit)">
+          <i class="fa fa-search"> </i></button>
+        <button class="btn btn-sm btn-warning" (click)="openEdit(contentEdit, typeProduit)">
+          <i class="fa fa-edit"></i></button>
+        <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, typeProduit)">
+          <i class="fa fa-remove"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">New TypeProduit</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <form [formGroup]="typeProduitDetails" (ngSubmit)="addTypeProduit()">
+        <div class="form-group">
+          <label for="nom">Type Produit</label>
+          <div class="input-group">
+            <input type="text" id="nom" formControlName="nom"  aria-describedby="emailHelp">
+          </div>
+        </div>
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    </div>
+  </ng-template>
+
+   <ng-template #contentDetails let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" >Details TypeProduit</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form >
+        <div class="form-group">
+          <label for="nom">Nom Type Produit</label>
+          <div class="input-group">
+            <input id="fnom" class="form-control" readonly>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    </div>
+  </ng-template>
+
+   <ng-template #contentEdit let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" >Modifier TypeProduit</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="typeProduitDetails" (ngSubmit)="updateTypeProduit()">
+        <div class="form-group">
+          <label for="nom">Type Produit</label>
+          <div class="input-group">
+            <input type="text"  formControlName="nom" class="form-control" aria-describedby="emailHelp">
+          </div>
+        </div>
+        <div class="border text-center">
+          <button data-dismiss="modal" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">close</button>
+    </div>
+  </ng-template>
+
+  <ng-template #contentDelete let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Confirm Delete</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>Are you sure you want to delete this record.</h2>
+      <div class="border text-center">
+        <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </ng-template>
+</div>

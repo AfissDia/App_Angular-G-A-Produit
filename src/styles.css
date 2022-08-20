@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+.container{
+    margin-top:5%;
+  }
+
+  .border{
+    padding: 7px;
+  }
+  .btn{
+    margin-right: 7px;
+  }
+  .fa {
+    margin-right: 7px;
+  }
+  table .btn{
+    margin: 1px;
+  }
+.modal-header{
+  width: 100%;
+  background-color: green;
+  text-align: center;
+  color: rgb(3, 3, 3);
+}
